@@ -1,0 +1,37 @@
+<div class="order-result">
+  <h2>Заявка №<%= @order.id %> успешно создана!</h2>
+
+  <section class="block">
+    <h3>Информация о клиенте</h3>
+    <ul>
+      <li><strong>ФИО:</strong> <%= "#{@order.last_name} #{@order.first_name} #{@order.middle_name}" %></li>
+      <li><strong>Телефон:</strong> <%= @order.phone %></li>
+      <li><strong>Email:</strong> <%= @order.email %></li>
+    </ul>
+  </section>
+
+  <section class="block">
+    <h3>Габариты груза</h3>
+    <ul>
+      <li><strong>Вес:</strong> <%= @order.weight %> кг</li>
+      <li><strong>Размеры (Д×Ш×В):</strong> <%= "#{@order.length} x #{@order.width} x #{@order.height}" %> см</li>
+    </ul>
+  </section>
+
+  <section class="block">
+    <h3>Маршрут</h3>
+    <ul>
+      <li><strong>Откуда:</strong> <%= @order.from_city %></li>
+      <li><strong>Куда:</strong> <%= @order.to_city %></li>
+      <li><strong>Расстояние:</strong> <%= @order.distance %> км</li>
+    </ul>
+  </section>
+
+  <section class="final-price">
+    <p><strong>Итоговая стоимость:</strong> <span><%= @order.price %> руб.</span></p>
+  </section>
+
+  <div class="back-btn">
+    <%= link_to "Создать новую заявку", new_order_path, class: "submit-btn" %>
+  </div>
+</div>

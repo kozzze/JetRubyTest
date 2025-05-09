@@ -1,0 +1,77 @@
+<h1>Расчет доставки груза</h1>
+
+<%= link_to "Вход", "/admin",
+    data: { turbo: false },
+    style: "font-size: 14px; padding: 6px 12px; background-color: #007bff; color: white; border-radius: 4px; text-decoration: none;" %>
+
+<% if @order.errors.any? %>
+  <div class="error-messages" style="color: red; margin: 20px 0;">
+    <h3>Ошибки при заполнении формы:</h3>
+    <ul>
+      <% @order.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<div class="form-wrapper">
+  <%= form_with model: @order, class: "order-form", data: { turbo: false } do |f| %>
+    <div class="form-group">
+      <%= f.label :first_name, "Имя" %>
+      <%= f.text_field :first_name %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :last_name, "Фамилия" %>
+      <%= f.text_field :last_name %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :middle_name, "Отчество" %>
+      <%= f.text_field :middle_name %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :phone, "Телефон" %>
+      <%= f.telephone_field :phone %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :email, "Email" %>
+      <%= f.email_field :email %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :weight, "Вес (кг)" %>
+      <%= f.number_field :weight, step: 0.1 %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :length, "Длина (см)" %>
+      <%= f.number_field :length %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :width, "Ширина (см)" %>
+      <%= f.number_field :width %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :height, "Высота (см)" %>
+      <%= f.number_field :height %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :from_city, "Пункт отправления" %>
+      <%= f.text_field :from_city %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :to_city, "Пункт назначения" %>
+      <%= f.text_field :to_city %>
+    </div>
+
+    <%= f.submit "Рассчитать и сохранить", class: "submit-btn" %>
+  <% end %>
+</div>

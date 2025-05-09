@@ -1,0 +1,26 @@
+<h1>Все заявки</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>ФИО</th>
+      <th>Откуда → Куда</th>
+      <th>Вес</th>
+      <th>Цена</th>
+      <th>Дата</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @orders.each do |order| %>
+      <tr>
+        <td><%= link_to order.id, order_path(order) %></td>
+        <td><%= "#{order.last_name} #{order.first_name}" %></td>
+        <td><%= "#{order.from_city} → #{order.to_city}" %></td>
+        <td><%= order.weight %> кг</td>
+        <td><%= order.price %> руб.</td>
+        <td><%= order.created_at.strftime("%d.%m.%Y") %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
